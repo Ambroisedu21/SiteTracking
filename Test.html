@@ -4,6 +4,18 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Nos Expertises CX</title>
+
+  <!-- Google Tag Manager -->
+  <script>
+    (function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+      new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+      j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;
+      j.src='https://www.googletagmanager.com/gtm.js?id=' + i + dl;
+      f.parentNode.insertBefore(j,f);
+    })(window,document,'script','dataLayer','GTM-XXXXXXX'); // ← remplace par ton ID
+  </script>
+  <!-- End Google Tag Manager -->
+
   <style>
     body { font-family: Arial, sans-serif; margin: 0; padding: 2em; background: #fff; }
     h1 { text-align: center; color: #003366; }
@@ -16,40 +28,55 @@
   </style>
 </head>
 <body>
+
+  <!-- Google Tag Manager (noscript) -->
+  <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-XXXXXXX"
+  height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+  <!-- End Google Tag Manager (noscript) -->
+
   <h1>NOS EXPERTISES CX</h1>
   <div class="expertises">
     <div class="expertise">
       <h2>CX Consulting</h2>
       <p>Saisir les opportunités de croissance propres à votre métier</p>
-      <a href="#cx-consulting" class="btn" data-expertise="CX Consulting">EN SAVOIR PLUS</a>
+      <a href="cx-consulting.html" class="btn" data-expertise="CX Consulting">EN SAVOIR PLUS</a>
     </div>
     <div class="expertise">
       <h2>Web</h2>
       <p>Offrir une expérience digitale performante sur Web & Mobile</p>
-      <a href="#web" class="btn" data-expertise="Web">EN SAVOIR PLUS</a>
+      <a href="web.html" class="btn" data-expertise="Web">EN SAVOIR PLUS</a>
     </div>
     <div class="expertise">
       <h2>Relation Client</h2>
       <p>Créer une relation personnalisée sur tous les canaux</p>
-      <a href="#relation-client" class="btn" data-expertise="Relation Client">EN SAVOIR PLUS</a>
+      <a href="relation-client.html" class="btn" data-expertise="Relation Client">EN SAVOIR PLUS</a>
     </div>
     <div class="expertise">
       <h2>Marketing</h2>
       <p>Engager de manière prédictive et personnalisée</p>
-      <a href="#marketing" class="btn" data-expertise="Marketing">EN SAVOIR PLUS</a>
+      <a href="marketing.html" class="btn" data-expertise="Marketing">EN SAVOIR PLUS</a>
     </div>
     <div class="expertise">
       <h2>Salesforce</h2>
       <p>Une expertise multicloud pour l’expérience client</p>
-      <a href="#salesforce" class="btn" data-expertise="Salesforce">EN SAVOIR PLUS</a>
+      <a href="salesforce.html" class="btn" data-expertise="Salesforce">EN SAVOIR PLUS</a>
     </div>
   </div>
 
-  <a href="#expertises" class="cta-global">EN SAVOIR PLUS SUR NOS EXPERTISES</a>
+  <a href="expertises.html" class="cta-global" data-expertise="Toutes">EN SAVOIR PLUS SUR NOS EXPERTISES</a>
 
-  <!-- GTM container -->
   <script>
-    // GTM script goes ici
+    // Tracking des clics avec dataLayer
+    document.querySelectorAll('[data-expertise]').forEach(button => {
+      button.addEventListener('click', function() {
+        const expertise = this.getAttribute('data-expertise');
+        window.dataLayer = window.dataLayer || [];
+        dataLayer.push({
+          event: 'expertise_click',
+          expertise: expertise
+        });
+      });
+    });
   </script>
 </body>
 </html>
