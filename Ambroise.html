@@ -92,6 +92,25 @@
     </div>
   </div>
 
-  <a href="#expertises" class="cta-global" data-expertise="CTA Global">EN SAVOIR PLUS SUR NOS EXPERTISES</a>
+  <a href="#expertises" class="cta-global btn" data-expertise="CTA Global">EN SAVOIR PLUS SUR NOS EXPERTISES</a>
+
+  <!-- Script de tracking des clics vers GA4 -->
+  <script>
+    document.addEventListener("DOMContentLoaded", function () {
+      const buttons = document.querySelectorAll("a.btn");
+
+      buttons.forEach((btn) => {
+        btn.addEventListener("click", function () {
+          const expertise = btn.dataset.expertise || "Inconnu";
+
+          gtag("event", "expertise_click", {
+            expertise: expertise,
+          });
+
+          console.log("Événement GA4 : expertise_click →", expertise);
+        });
+      });
+    });
+  </script>
 </body>
 </html>
