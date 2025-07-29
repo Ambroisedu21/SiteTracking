@@ -4,18 +4,70 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Nos Expertises CX</title>
+
+  <!-- Google Tag Manager -->
+  <script>
+    (function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+    new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+    j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+    'https://www.googletagmanager.com/gtm.js?id=GTM-55BBX5K4'+dl;f.parentNode.insertBefore(j,f);
+    })(window,document,'script','dataLayer','GTM-55BBX5K4');
+  </script>
+  <!-- End Google Tag Manager -->
+
   <style>
     body { font-family: Arial, sans-serif; margin: 0; padding: 2em; background: #fff; }
     h1 { text-align: center; color: #003366; }
-    .expertises { display: flex; flex-wrap: wrap; justify-content: center; gap: 2em; }
-    .expertise { width: 200px; text-align: center; border-bottom: 2px solid transparent; }
-    .expertise h2 { font-size: 1.2em; color: #003366; }
-    .expertise p { font-size: 0.9em; }
-    .btn { display: inline-block; margin-top: 1em; color: #c30e2e; font-weight: bold; cursor: pointer; text-decoration: none; }
-    .cta-global { display: block; margin: 3em auto 0; background: #c30e2e; color: white; padding: 1em 2em; border-radius: 5px; text-align: center; width: fit-content; text-decoration: none; }
+    .expertises {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 2em;
+      margin-top: 2em;
+    }
+    .expertise {
+      width: 220px;
+      text-align: center;
+      padding: 1em;
+      border: 1px solid #ccc;
+      border-radius: 8px;
+      box-shadow: 0 0 10px rgba(0,0,0,0.05);
+    }
+    .expertise h2 {
+      font-size: 1.1em;
+      color: #003366;
+      margin-bottom: 0.4em;
+    }
+    .expertise p {
+      font-size: 0.9em;
+    }
+    .btn {
+      display: inline-block;
+      margin-top: 1em;
+      color: #c30e2e;
+      font-weight: bold;
+      cursor: pointer;
+      text-decoration: none;
+    }
+    .cta-global {
+      display: block;
+      margin: 3em auto 0;
+      background: #c30e2e;
+      color: white;
+      padding: 1em 2em;
+      border-radius: 5px;
+      text-align: center;
+      width: fit-content;
+      text-decoration: none;
+    }
   </style>
 </head>
 <body>
+  <!-- Google Tag Manager (noscript) -->
+  <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-55BBX5K4"
+  height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+  <!-- End Google Tag Manager (noscript) -->
+
   <h1>NOS EXPERTISES CX</h1>
   <div class="expertises">
     <div class="expertise">
@@ -45,11 +97,7 @@
     </div>
   </div>
 
-  <a href="#expertises" class="cta-global">EN SAVOIR PLUS SUR NOS EXPERTISES</a>
+  <a href="#expertises" class="cta-global" data-expertise="CTA Global">EN SAVOIR PLUS SUR NOS EXPERTISES</a>
 
-  <!-- GTM container -->
-  <script>
-    // GTM script goes ici
-  </script>
 </body>
 </html>
