@@ -1,3 +1,4 @@
+<!-- Ambroise.html (page principale) -->
 <!DOCTYPE html>
 <html lang="fr">
 <head>
@@ -5,7 +6,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Nos Expertises CX</title>
 
-  <!-- Google Analytics 4 (gtag.js) -->
+  <!-- Google Analytics 4 -->
   <script async src="https://www.googletagmanager.com/gtag/js?id=G-WPSZRKKMQ7"></script>
   <script>
     window.dataLayer = window.dataLayer || [];
@@ -13,6 +14,9 @@
     gtag('js', new Date());
     gtag('config', 'G-WPSZRKKMQ7');
   </script>
+
+  <!-- HubSpot Tracking Code -->
+  <script type="text/javascript" id="hs-script-loader" async defer src="//js.hs-scripts.com/49153213.js"></script>
 
   <style>
     body { font-family: Arial, sans-serif; margin: 0; padding: 2em; background: #fff; }
@@ -37,9 +41,7 @@
       color: #003366;
       margin-bottom: 0.4em;
     }
-    .expertise p {
-      font-size: 0.9em;
-    }
+    .expertise p { font-size: 0.9em; }
     .btn {
       display: inline-block;
       margin-top: 1em;
@@ -61,53 +63,45 @@
     }
   </style>
 </head>
-
 <body>
   <h1>NOS EXPERTISES CX</h1>
   <div class="expertises">
     <div class="expertise">
       <h2>CX Consulting</h2>
       <p>Saisir les opportunités de croissance propres à votre métier</p>
-      <a href="#cx-consulting" class="btn" data-expertise="CX Consulting">EN SAVOIR PLUS</a>
+      <a href="cx-consulting.html" class="btn" data-expertise="CX Consulting">EN SAVOIR PLUS</a>
     </div>
     <div class="expertise">
       <h2>Web</h2>
       <p>Offrir une expérience digitale performante sur Web & Mobile</p>
-      <a href="#web" class="btn" data-expertise="Web">EN SAVOIR PLUS</a>
+      <a href="experienceweb.html" class="btn" data-expertise="Web">EN SAVOIR PLUS</a>
     </div>
     <div class="expertise">
       <h2>Relation Client</h2>
       <p>Créer une relation personnalisée sur tous les canaux</p>
-      <a href="#relation-client" class="btn" data-expertise="Relation Client">EN SAVOIR PLUS</a>
+      <a href="relation-client.html" class="btn" data-expertise="Relation Client">EN SAVOIR PLUS</a>
     </div>
     <div class="expertise">
       <h2>Marketing</h2>
       <p>Engager de manière prédictive et personnalisée</p>
-      <a href="#marketing" class="btn" data-expertise="Marketing">EN SAVOIR PLUS</a>
+      <a href="marketing.html" class="btn" data-expertise="Marketing">EN SAVOIR PLUS</a>
     </div>
     <div class="expertise">
       <h2>Salesforce</h2>
       <p>Une expertise multicloud pour l’expérience client</p>
-      <a href="#salesforce" class="btn" data-expertise="Salesforce">EN SAVOIR PLUS</a>
+      <a href="salesforce.html" class="btn" data-expertise="Salesforce">EN SAVOIR PLUS</a>
     </div>
   </div>
 
   <a href="#expertises" class="cta-global btn" data-expertise="CTA Global">EN SAVOIR PLUS SUR NOS EXPERTISES</a>
 
-  <!-- Script de tracking des clics vers GA4 -->
   <script>
     document.addEventListener("DOMContentLoaded", function () {
       const buttons = document.querySelectorAll("a.btn");
-
       buttons.forEach((btn) => {
         btn.addEventListener("click", function () {
           const expertise = btn.dataset.expertise || "Inconnu";
-
-          gtag("event", "expertise_click", {
-            expertise: expertise,
-          });
-
-          console.log("Événement GA4 : expertise_click →", expertise);
+          gtag("event", "expertise_click", { expertise: expertise });
         });
       });
     });
