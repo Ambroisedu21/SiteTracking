@@ -10,7 +10,7 @@
     (function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
     new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
     j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
-    'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+    'https://www.googletagmanager.com/gtm.js?id=GTM-55BBX5K4'+dl;f.parentNode.insertBefore(j,f);
     })(window,document,'script','dataLayer','GTM-55BBX5K4');
   </script>
   <!-- End Google Tag Manager -->
@@ -117,21 +117,19 @@
     <form id="form-identification">
       <label for="firstname">Prénom</label>
       <input type="text" id="firstname" name="firstname" required />
+
       <label for="lastname">Nom</label>
       <input type="text" id="lastname" name="lastname" required />
+
       <label for="email">Email</label>
       <input type="email" id="email" name="email" required />
+
       <input type="submit" value="Valider" />
     </form>
   </div>
 
   <script>
-    function getCookie(name) {
-      const match = document.cookie.match(new RegExp('(^| )' + name + '=([^;]+)'));
-      return match ? match[2] : null;
-    }
-
-    function getUTMParams() {
+    function getUTMs() {
       const params = new URLSearchParams(window.location.search);
       return {
         utm_source: params.get("utm_source") || "",
@@ -148,15 +146,8 @@
       const firstname = document.getElementById("firstname").value;
       const lastname = document.getElementById("lastname").value;
       const email = document.getElementById("email").value;
-      const hutk = getCookie("hubspotutk") || "";
-      const pageUri = window.location.href;
-      const pageName = document.title;
-      const referrer = document.referrer || "";
-      const utm = getUTMParams();
-
-      console.log("🔍 hutk:", hutk);
-      console.log("📄 Referrer:", referrer);
-      console.log("📈 UTM:", utm);
+      const hutk = document.cookie.match(/hubspotutk=([^;]+)/)?.[1] || "";
+      const utm = getUTMs();
 
       fetch("https://api.hsforms.com/submissions/v3/integration/submit/49153213/4b18f182-dbe4-4607-9f62-ef4961f18f38", {
         method: "POST",
@@ -165,14 +156,17 @@
           fields: [
             { name: "firstname", value: firstname },
             { name: "lastname", value: lastname },
-            { name: "email", value: email }
+            { name: "email", value: email },
+            { name: "utm_source", value: utm.utm_source },
+            { name: "utm_medium", value: utm.utm_medium },
+            { name: "utm_campaign", value: utm.utm_campaign },
+            { name: "utm_term", value: utm.utm_term },
+            { name: "utm_content", value: utm.utm_content }
           ],
           context: {
             hutk: hutk,
-            pageUri: pageUri,
-            pageName: pageName,
-            referrer: referrer,
-            ...utm
+            pageUri: window.location.href,
+            pageName: document.title
           }
         })
       })
@@ -186,6 +180,7 @@
     });
   </script>
 
+  <!-- Script de tracking événement HubSpot -->
   <script>
     document.addEventListener("DOMContentLoaded", function () {
       const boutons = document.querySelectorAll(".expertise-button");
