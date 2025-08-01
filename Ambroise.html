@@ -18,6 +18,14 @@
   <!-- HubSpot Tracking Code -->
   <script type="text/javascript" id="hs-script-loader" async defer src="//js.hs-scripts.com/49153213.js"></script>
 
+  <!-- Fonction utilitaire pour récupérer un cookie -->
+  <script>
+    function getCookie(name) {
+      const match = document.cookie.match(new RegExp('(^| )' + name + '=([^;]+)'));
+      return match ? match[2] : null;
+    }
+  </script>
+
   <style>
     body { font-family: Arial, sans-serif; margin: 0; padding: 2em; background: #fff; }
     h1 { text-align: center; color: #003366; }
@@ -128,6 +136,7 @@
     </form>
   </div>
 
+  <!-- Soumission du formulaire vers HubSpot avec hutk -->
   <script>
     document.getElementById("form-identification").addEventListener("submit", function(e) {
       e.preventDefault();
@@ -135,7 +144,7 @@
       const firstname = document.getElementById("firstname").value;
       const lastname = document.getElementById("lastname").value;
       const email = document.getElementById("email").value;
-      const hutk = document.cookie.match(/hubspotutk=([^;]+)/)?.[1] || "";
+      const hutk = getCookie("hubspotutk") || "";
 
       fetch("https://api.hsforms.com/submissions/v3/integration/submit/49153213/4b18f182-dbe4-4607-9f62-ef4961f18f38", {
         method: "POST",
@@ -163,7 +172,7 @@
     });
   </script>
 
-  <!-- Script de tracking événement HubSpot -->
+  <!-- Script de tracking des clics sur les expertises -->
   <script>
     document.addEventListener("DOMContentLoaded", function () {
       const boutons = document.querySelectorAll(".expertise-button");
