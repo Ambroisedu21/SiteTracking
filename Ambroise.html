@@ -1,4 +1,3 @@
-<!-- Ambroise.html (page principale) -->
 <!DOCTYPE html>
 <html lang="fr">
 <head>
@@ -6,14 +5,15 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Nos Expertises CX</title>
 
-  <!-- Google Analytics 4 -->
-  <script async src="https://www.googletagmanager.com/gtag/js?id=G-WPSZRKKMQ7"></script>
+  <!-- Google Tag Manager -->
   <script>
-    window.dataLayer = window.dataLayer || [];
-    function gtag(){dataLayer.push(arguments);}
-    gtag('js', new Date());
-    gtag('config', 'G-WPSZRKKMQ7');
+    (function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+    new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+    j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+    'https://www.googletagmanager.com/gtm.js?id=GTM-55BBX5K4'+dl;f.parentNode.insertBefore(j,f);
+    })(window,document,'script','dataLayer','GTM-55BBX5K4');
   </script>
+  <!-- End Google Tag Manager -->
 
   <!-- HubSpot Tracking Code -->
   <script type="text/javascript" id="hs-script-loader" async defer src="//js.hs-scripts.com/49153213.js"></script>
@@ -21,28 +21,11 @@
   <style>
     body { font-family: Arial, sans-serif; margin: 0; padding: 2em; background: #fff; }
     h1 { text-align: center; color: #003366; }
-    .expertises {
-      display: flex;
-      flex-wrap: wrap;
-      justify-content: center;
-      gap: 2em;
-      margin-top: 2em;
-    }
-    .expertise {
-      width: 220px;
-      text-align: center;
-      padding: 1em;
-      border: 1px solid #ccc;
-      border-radius: 8px;
-      box-shadow: 0 0 10px rgba(0,0,0,0.05);
-    }
-    .expertise h2 {
-      font-size: 1.1em;
-      color: #003366;
-      margin-bottom: 0.4em;
-    }
+    .expertises { display: flex; flex-wrap: wrap; justify-content: center; gap: 2em; }
+    .expertise { width: 200px; text-align: center; border-bottom: 2px solid transparent; }
+    .expertise h2 { font-size: 1.2em; color: #003366; }
     .expertise p { font-size: 0.9em; }
-    .btn {
+    .btn, .expertise-button {
       display: inline-block;
       margin-top: 1em;
       color: #c30e2e;
@@ -64,44 +47,63 @@
   </style>
 </head>
 <body>
+  <!-- Google Tag Manager (noscript) -->
+  <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-55BBX5K4"
+  height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+  <!-- End Google Tag Manager (noscript) -->
+
   <h1>NOS EXPERTISES CX</h1>
+
   <div class="expertises">
     <div class="expertise">
       <h2>CX Consulting</h2>
       <p>Saisir les opportunités de croissance propres à votre métier</p>
-      <a href="cx-consulting.html" class="btn" data-expertise="CX Consulting">EN SAVOIR PLUS</a>
+      <a href="cx-consulting.html" class="expertise-button" data-expertise="CX Consulting">EN SAVOIR PLUS</a>
     </div>
     <div class="expertise">
       <h2>Web</h2>
       <p>Offrir une expérience digitale performante sur Web & Mobile</p>
-      <a href="experienceweb.html" class="btn" data-expertise="Web">EN SAVOIR PLUS</a>
+      <a href="experienceweb.html" class="expertise-button" data-expertise="Web">EN SAVOIR PLUS</a>
     </div>
     <div class="expertise">
       <h2>Relation Client</h2>
       <p>Créer une relation personnalisée sur tous les canaux</p>
-      <a href="relation-client.html" class="btn" data-expertise="Relation Client">EN SAVOIR PLUS</a>
+      <a href="relation-client.html" class="expertise-button" data-expertise="Relation Client">EN SAVOIR PLUS</a>
     </div>
     <div class="expertise">
       <h2>Marketing</h2>
       <p>Engager de manière prédictive et personnalisée</p>
-      <a href="marketing.html" class="btn" data-expertise="Marketing">EN SAVOIR PLUS</a>
+      <a href="marketing.html" class="expertise-button" data-expertise="Marketing">EN SAVOIR PLUS</a>
     </div>
     <div class="expertise">
       <h2>Salesforce</h2>
       <p>Une expertise multicloud pour l’expérience client</p>
-      <a href="salesforce.html" class="btn" data-expertise="Salesforce">EN SAVOIR PLUS</a>
+      <a href="salesforce.html" class="expertise-button" data-expertise="Salesforce">EN SAVOIR PLUS</a>
     </div>
   </div>
 
-  <a href="#expertises" class="cta-global btn" data-expertise="CTA Global">EN SAVOIR PLUS SUR NOS EXPERTISES</a>
+  <a href="#expertises" class="cta-global">EN SAVOIR PLUS SUR NOS EXPERTISES</a>
 
+  <!-- Script de tracking événement HubSpot -->
   <script>
     document.addEventListener("DOMContentLoaded", function () {
-      const buttons = document.querySelectorAll("a.btn");
-      buttons.forEach((btn) => {
-        btn.addEventListener("click", function () {
-          const expertise = btn.dataset.expertise || "Inconnu";
-          gtag("event", "expertise_click", { expertise: expertise });
+      const boutons = document.querySelectorAll(".expertise-button");
+
+      boutons.forEach((bouton) => {
+        bouton.addEventListener("click", function () {
+          const expertise = bouton.dataset.expertise;
+
+          if (window._hsq) {
+            _hsq.push([
+              "trackCustomBehavioralEvent",
+              {
+                name: "pe49153213_clic_expertises",
+                properties: {
+                  expertises_cible: expertise
+                }
+              }
+            ]);
+          }
         });
       });
     });
