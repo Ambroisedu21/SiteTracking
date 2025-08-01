@@ -10,21 +10,13 @@
     (function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
     new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
     j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
-    'https://www.googletagmanager.com/gtm.js?id=GTM-55BBX5K4'+dl;f.parentNode.insertBefore(j,f);
+    'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
     })(window,document,'script','dataLayer','GTM-55BBX5K4');
   </script>
   <!-- End Google Tag Manager -->
 
   <!-- HubSpot Tracking Code -->
   <script type="text/javascript" id="hs-script-loader" async defer src="//js.hs-scripts.com/49153213.js"></script>
-
-  <!-- Fonction utilitaire pour récupérer un cookie -->
-  <script>
-    function getCookie(name) {
-      const match = document.cookie.match(new RegExp('(^| )' + name + '=([^;]+)'));
-      return match ? match[2] : null;
-    }
-  </script>
 
   <style>
     body { font-family: Arial, sans-serif; margin: 0; padding: 2em; background: #fff; }
@@ -125,19 +117,31 @@
     <form id="form-identification">
       <label for="firstname">Prénom</label>
       <input type="text" id="firstname" name="firstname" required />
-
       <label for="lastname">Nom</label>
       <input type="text" id="lastname" name="lastname" required />
-
       <label for="email">Email</label>
       <input type="email" id="email" name="email" required />
-
       <input type="submit" value="Valider" />
     </form>
   </div>
 
-  <!-- Soumission du formulaire vers HubSpot avec hutk -->
   <script>
+    function getCookie(name) {
+      const match = document.cookie.match(new RegExp('(^| )' + name + '=([^;]+)'));
+      return match ? match[2] : null;
+    }
+
+    function getUTMParams() {
+      const params = new URLSearchParams(window.location.search);
+      return {
+        utm_source: params.get("utm_source") || "",
+        utm_medium: params.get("utm_medium") || "",
+        utm_campaign: params.get("utm_campaign") || "",
+        utm_term: params.get("utm_term") || "",
+        utm_content: params.get("utm_content") || ""
+      };
+    }
+
     document.getElementById("form-identification").addEventListener("submit", function(e) {
       e.preventDefault();
 
@@ -145,6 +149,14 @@
       const lastname = document.getElementById("lastname").value;
       const email = document.getElementById("email").value;
       const hutk = getCookie("hubspotutk") || "";
+      const pageUri = window.location.href;
+      const pageName = document.title;
+      const referrer = document.referrer || "";
+      const utm = getUTMParams();
+
+      console.log("🔍 hutk:", hutk);
+      console.log("📄 Referrer:", referrer);
+      console.log("📈 UTM:", utm);
 
       fetch("https://api.hsforms.com/submissions/v3/integration/submit/49153213/4b18f182-dbe4-4607-9f62-ef4961f18f38", {
         method: "POST",
@@ -157,8 +169,10 @@
           ],
           context: {
             hutk: hutk,
-            pageUri: window.location.href,
-            pageName: document.title
+            pageUri: pageUri,
+            pageName: pageName,
+            referrer: referrer,
+            ...utm
           }
         })
       })
@@ -172,7 +186,6 @@
     });
   </script>
 
-  <!-- Script de tracking des clics sur les expertises -->
   <script>
     document.addEventListener("DOMContentLoaded", function () {
       const boutons = document.querySelectorAll(".expertise-button");
